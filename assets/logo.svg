@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 180" role="img" aria-labelledby="title desc">
+  <title id="title">Kay's Originals Logo</title>
+  <desc id="desc">Oval colorful logo for Kay's Originals</desc>
+  <defs>
+    <radialGradient id="paint" cx="52%" cy="45%" r="60%">
+      <stop offset="0%" stop-color="#fff7dc" />
+      <stop offset="38%" stop-color="#7ac9df" />
+      <stop offset="62%" stop-color="#f3a3d1" />
+      <stop offset="82%" stop-color="#f3cf76" />
+      <stop offset="100%" stop-color="#72c582" />
+    </radialGradient>
+    <linearGradient id="gold" x1="0" x2="1">
+      <stop offset="0%" stop-color="#ffe8a1" />
+      <stop offset="100%" stop-color="#d39729" />
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-40%" width="140%" height="180%">
+      <feDropShadow dx="0" dy="4" stdDeviation="4" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+
+  <ellipse cx="260" cy="90" rx="220" ry="72" fill="url(#paint)" stroke="#8a5a2d" stroke-width="7" filter="url(#shadow)" />
+  <ellipse cx="260" cy="90" rx="205" ry="58" fill="none" stroke="url(#gold)" stroke-width="3" opacity="0.9" />
+
+  <text x="170" y="102" font-size="56" font-style="italic" font-family="Georgia, serif" fill="url(#gold)" stroke="#8a5a2d" stroke-width="1.8">Kay's</text>
+  <text x="270" y="102" font-size="56" font-style="italic" font-family="Georgia, serif" fill="#f6f6f6" stroke="#c4393a" stroke-width="1.8">Originals</text>
+</svg>

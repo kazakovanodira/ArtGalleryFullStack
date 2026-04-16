@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kay's Originals | Artwork</title>
+  <meta name="description" content="Explore featured artwork in Kay's Originals collection." />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="ribbon-bg"></div>
+    <a class="brand" href="index.html" aria-label="Kay's Originals home">
+      <img src="assets/logo.svg" alt="Kay's Originals logo" />
+    </a>
+    <nav class="site-nav" aria-label="Main navigation">
+      <ul>
+        <li><a href="index.html" data-nav="home">Home</a></li>
+        <li><a href="artwork.html" data-nav="artwork">Artwork</a></li>
+        <li><a href="artists.html" data-nav="artists">Artists</a></li>
+        <li><a href="application.html" data-nav="application">Artists Application</a></li>
+        <li><a href="contact.html" data-nav="contact">Contact Us</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="page-head">
+      <h1>Artwork</h1>
+      <p>Find the piece of your dreams with Kay's Originals...</p>
+    </section>
+
+    <section class="toolbar">
+      <label for="artFilter">Filter By</label>
+      <select id="artFilter" aria-label="Filter artwork">
+        <option value="all">All Mediums</option>
+        <option value="painting">Paintings</option>
+        <option value="drawing">Drawings</option>
+        <option value="print">Prints</option>
+      </select>
+    </section>
+
+    <section id="artworkGrid" class="grid cards-grid" aria-live="polite"></section>
+
+    <div class="center-row">
+      <button id="artworkToggle" class="link-button" type="button">View More</button>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="social" aria-label="Social links">
+      <a href="#" aria-label="Instagram">◉</a>
+      <a href="#" aria-label="X">✦</a>
+      <a href="#" aria-label="Facebook">◍</a>
+      <a href="#" aria-label="Email">✉</a>
+    </div>
+    <p>© <span id="year"></span> All Rights Reserved | Kay's Original | Privacy Statement</p>
+  </footer>
+
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

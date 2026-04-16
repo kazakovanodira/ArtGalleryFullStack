@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kay's Originals | Artists Application</title>
+  <meta name="description" content="Apply as an artist to Kay's Originals gallery." />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="ribbon-bg"></div>
+    <a class="brand" href="index.html" aria-label="Kay's Originals home">
+      <img src="assets/logo.svg" alt="Kay's Originals logo" />
+    </a>
+    <nav class="site-nav" aria-label="Main navigation">
+      <ul>
+        <li><a href="index.html" data-nav="home">Home</a></li>
+        <li><a href="artwork.html" data-nav="artwork">Artwork</a></li>
+        <li><a href="artists.html" data-nav="artists">Artists</a></li>
+        <li><a href="application.html" data-nav="application">Artists Application</a></li>
+        <li><a href="contact.html" data-nav="contact">Contact Us</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="page-head">
+      <h1>Artists Application</h1>
+      <p>
+        Interested in showcasing and selling your artwork? Complete the form below to feature your work alongside
+        other artists on our platform. Selected applicants may be invited for an interview to further discuss their
+        work, and approved artists will have the opportunity to sell their artwork and receive commissions.
+      </p>
+    </section>
+
+    <form id="artistApplication" class="panel form-grid" novalidate>
+      <label>
+        First Name
+        <input name="firstName" type="text" required />
+      </label>
+      <label>
+        Last Name
+        <input name="lastName" type="text" required />
+      </label>
+      <label>
+        Phone Number
+        <input name="phone" type="tel" required />
+      </label>
+      <label>
+        Email
+        <input name="email" type="email" value="johnsmith16@gmail.com" required />
+      </label>
+
+      <fieldset>
+        <legend>Art</legend>
+        <label><input type="checkbox" name="artType" value="Paintings" /> Paintings</label>
+        <label><input type="checkbox" name="artType" value="Sculptures" /> Sculptures</label>
+        <label><input type="checkbox" name="artType" value="Drawings" /> Drawings</label>
+        <label><input type="checkbox" name="artType" value="Photography" /> Photography</label>
+        <label><input type="checkbox" name="artType" value="Architecture" /> Architecture</label>
+        <label><input type="checkbox" name="artType" value="Other" /> Other</label>
+      </fieldset>
+
+      <label class="wide">
+        Address
+        <input name="street" type="text" placeholder="Street Address" />
+      </label>
+
+      <div class="city-row wide">
+        <label>
+          City
+          <input name="city" type="text" />
+        </label>
+        <label>
+          Postal
+          <input name="postal" type="text" />
+        </label>
+        <label>
+          Country
+          <select name="country">
+            <option value="">Select</option>
+            <option>United States</option>
+            <option>Canada</option>
+            <option>Mexico</option>
+            <option>United Kingdom</option>
+            <option>France</option>
+            <option>Japan</option>
+          </select>
+        </label>
+      </div>
+
+      <label class="wide upload-field">
+        Portfolio Upload
+        <input name="portfolio" type="file" accept="image/*" multiple />
+        <small>Choose files or drag here. Maximum of 3 images.</small>
+      </label>
+
+      <div class="wide center-row">
+        <button class="button" type="submit">Submit</button>
+      </div>
+      <p id="formFeedback" class="wide form-feedback" role="status" aria-live="polite"></p>
+    </form>
+  </main>
+
+  <footer class="site-footer">
+    <div class="social" aria-label="Social links">
+      <a href="#" aria-label="Instagram">◉</a>
+      <a href="#" aria-label="X">✦</a>
+      <a href="#" aria-label="Facebook">◍</a>
+      <a href="#" aria-label="Email">✉</a>
+    </div>
+    <p>© <span id="year"></span> All Rights Reserved | Kay's Original | Privacy Statement</p>
+  </footer>
+
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
