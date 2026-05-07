@@ -6,6 +6,42 @@
   setupApplicationForm();
 })();
 
+function createFallbackImage(label) {
+  const themes = [
+    ["#e6e0d7", "#3b332d"],
+    ["#cab089", "#2f2720"],
+    ["#bdb8aa", "#2f2a24"],
+    ["#8eb0b5", "#1a2123"],
+    ["#7ca2b0", "#171f24"],
+    ["#686868", "#f5f5f5"],
+    ["#826f62", "#faf7f1"],
+    ["#4d5660", "#f6f3ed"]
+  ];
+  let hash = 0;
+  for (const character of label) {
+    hash = (hash + character.charCodeAt(0)) % themes.length;
+  }
+
+  const [background, foreground] = themes[hash];
+  const escapedLabel = label
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/\"/g, "&quot;")
+    .replace(/'/g, "&apos;");
+
+  const svg = `
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 560" role="img" aria-label="${escapedLabel}">
+      <rect width="420" height="560" fill="${background}" />
+      <rect x="28" y="28" width="364" height="504" rx="16" fill="none" stroke="${foreground}" stroke-opacity="0.22" stroke-width="3" />
+      <text x="50%" y="46%" text-anchor="middle" fill="${foreground}" font-family="Georgia, serif" font-size="30" font-weight="700">${escapedLabel}</text>
+      <text x="50%" y="57%" text-anchor="middle" fill="${foreground}" font-family="Arial, sans-serif" font-size="15" letter-spacing="2">Image unavailable</text>
+    </svg>
+  `;
+
+  return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`;
+}
+
 function setYear() {
   const yearTargets = document.querySelectorAll("#year");
   const year = new Date().getFullYear();
@@ -58,10 +94,11 @@ function setupArtworkPage() {
 
     grid.innerHTML = visible
       .map((item) => {
+        const fallbackImage = createFallbackImage(`${item.title} by ${item.artist}`);
         return `
           <article class="card">
             <div class="card-frame">
-              <img src="${item.image}" alt="${item.title} by ${item.artist}" loading="lazy" />
+              <img src="${item.image}" alt="${item.title} by ${item.artist}" loading="lazy" onerror="this.onerror=null;this.src='${fallbackImage}'" />
             </div>
             <h3>${item.title} By ${item.artist}</h3>
           </article>
@@ -115,10 +152,11 @@ function setupArtistsPage() {
 
     grid.innerHTML = visible
       .map((artist) => {
+        const fallbackImage = createFallbackImage(artist.name);
         return `
           <article class="card">
             <div class="card-frame">
-              <img src="${artist.image}" alt="Portrait of ${artist.name}" loading="lazy" />
+              <img src="${artist.image}" alt="Portrait of ${artist.name}" loading="lazy" onerror="this.onerror=null;this.src='${fallbackImage}'" />
             </div>
             <h3>${artist.name}</h3>
           </article>

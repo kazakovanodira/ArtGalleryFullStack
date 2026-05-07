@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kay's Originals Artist Application Form</title>
+  <style>
+    :root {
+      --ink: #1f1a17;
+      --line: #333;
+      --paper: #fff;
+    }
+
+    body {
+      margin: 0;
+      padding: 1rem;
+      color: var(--ink);
+      background: #f3f3f3;
+      font-family: Georgia, "Times New Roman", serif;
+    }
+
+    .sheet {
+      max-width: 850px;
+      margin: 0 auto;
+      background: var(--paper);
+      border: 1px solid #c8c8c8;
+      padding: 1rem 1.2rem;
+    }
+
+    h1 {
+      margin: 0 0 0.4rem;
+      font-size: 1.8rem;
+    }
+
+    p {
+      margin: 0.3rem 0 0.8rem;
+      font-size: 0.95rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.8rem 1rem;
+    }
+
+    label,
+    fieldset {
+      display: grid;
+      gap: 0.3rem;
+      font-size: 0.95rem;
+    }
+
+    .line {
+      width: 100%;
+      min-height: 2rem;
+      border: 1px solid var(--line);
+    }
+
+    fieldset {
+      border: 1px solid var(--line);
+      padding: 0.5rem;
+      grid-column: 1 / -1;
+    }
+
+    .checkboxes {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.3rem 0.7rem;
+      margin-top: 0.3rem;
+    }
+
+    .checkboxes span::before {
+      content: "\2610";
+      margin-right: 0.35rem;
+    }
+
+    .wide {
+      grid-column: 1 / -1;
+    }
+
+    .city {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 0.7rem;
+    }
+
+    .signature {
+      margin-top: 1rem;
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 1rem;
+    }
+
+    @media print {
+      body {
+        background: #fff;
+        padding: 0;
+      }
+
+      .sheet {
+        border: 0;
+        padding: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="sheet">
+    <h1>Kay's Originals - Artist Application</h1>
+    <p>Complete this form and submit it to Kay's Originals for review.</p>
+
+    <section class="grid">
+      <label>
+        First Name
+        <div class="line"></div>
+      </label>
+
+      <label>
+        Last Name
+        <div class="line"></div>
+      </label>
+
+      <label>
+        Phone Number
+        <div class="line"></div>
+      </label>
+
+      <label>
+        Email
+        <div class="line"></div>
+      </label>
+
+      <fieldset>
+        <legend>Art Type</legend>
+        <div class="checkboxes">
+          <span>Paintings</span>
+          <span>Sculptures</span>
+          <span>Drawings</span>
+          <span>Photography</span>
+          <span>Architecture</span>
+          <span>Other</span>
+        </div>
+      </fieldset>
+
+      <label class="wide">
+        Street Address
+        <div class="line"></div>
+      </label>
+
+      <div class="wide city">
+        <label>
+          City
+          <div class="line"></div>
+        </label>
+
+        <label>
+          Postal Code
+          <div class="line"></div>
+        </label>
+
+        <label>
+          Country
+          <div class="line"></div>
+        </label>
+      </div>
+
+      <label class="wide">
+        Portfolio Samples (attach separately)
+        <div class="line" style="min-height: 4.3rem;"></div>
+      </label>
+    </section>
+
+    <section class="signature">
+      <label>
+        Applicant Signature
+        <div class="line"></div>
+      </label>
+
+      <label>
+        Date
+        <div class="line"></div>
+      </label>
+    </section>
+  </main>
+</body>
+</html>
