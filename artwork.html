@@ -47,6 +47,35 @@
     </div>
   </main>
 
+  <div id="artworkModal" class="modal" role="dialog" aria-hidden="true">
+    <div class="modal-overlay" id="modalOverlay"></div>
+    <div class="modal-content">
+      <button class="modal-close" id="modalClose" aria-label="Close details">&times;</button>
+      <div class="modal-body">
+        <h2 id="modalTitle"></h2>
+        <p id="modalArtist" class="modal-artist"></p>
+        <div class="modal-details">
+          <div class="detail-row">
+            <span class="detail-label">Year Created:</span>
+            <span id="modalYear" class="detail-value"></span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-label">Medium:</span>
+            <span id="modalMedium" class="detail-value"></span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-label">Price:</span>
+            <span id="modalPrice" class="detail-value"></span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-label">Status:</span>
+            <span id="modalStatus" class="detail-value"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <footer class="site-footer">
     <p>© <span id="year"></span> All Rights Reserved | Kay's Original | Privacy Statement</p>
   </footer>

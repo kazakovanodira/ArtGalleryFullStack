@@ -1,11 +1,3 @@
-(function initSite() {
-  setYear();
-  setActiveNav();
-  setupArtworkPage();
-  setupArtistsPage();
-  setupApplicationForm();
-})();
-
 function createFallbackImage(label) {
   const themes = [
     ["#e6e0d7", "#3b332d"],
@@ -40,6 +32,20 @@ function createFallbackImage(label) {
   `;
 
   return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`;
+}
+
+const usdFormatter = new Intl.NumberFormat("en-US", {
+  style: "currency",
+  currency: "USD",
+  maximumFractionDigits: 0
+});
+
+function formatPrice(value) {
+  if (typeof value !== "number") {
+    return "Price upon request";
+  }
+
+  return usdFormatter.format(value);
 }
 
 function setYear() {
@@ -93,14 +99,15 @@ function setupArtworkPage() {
     const visible = expanded ? filtered : filtered.slice(0, limit);
 
     grid.innerHTML = visible
-      .map((item) => {
+      .map((item, index) => {
         const fallbackImage = createFallbackImage(`${item.title} by ${item.artist}`);
+        const formattedPrice = formatPrice(item.price);
         return `
-          <article class="card">
+          <article class="card" data-artwork-index="${filtered.indexOf(item)}" role="button" tabindex="0" style="cursor: pointer;">
             <div class="card-frame">
               <img src="${item.image}" alt="${item.title} by ${item.artist}" loading="lazy" onerror="this.onerror=null;this.src='${fallbackImage}'" />
             </div>
-            <h3>${item.title} By ${item.artist}</h3>
+            <h3>${item.title} By ${item.artist} - ${formattedPrice}</h3>
           </article>
         `;
       })
@@ -113,18 +120,100 @@ function setupArtworkPage() {
     }
   }
 
+  function attachArtworkCardListeners() {
+    const cards = grid.querySelectorAll("[data-artwork-index]");
+    cards.forEach((card) => {
+      const clickHandler = () => {
+        const index = parseInt(card.getAttribute("data-artwork-index"), 10);
+        const artwork = window.galleryData.artwork[index];
+        if (artwork) {
+          showArtworkModal(artwork);
+        }
+      };
+      card.addEventListener("click", clickHandler);
+      card.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          clickHandler();
+        }
+      });
+    });
+  }
+
   filterSelect?.addEventListener("change", () => {
     expanded = false;
     drawArtwork();
+    attachArtworkCardListeners();
   });
 
   toggleButton?.addEventListener("click", () => {
     expanded = !expanded;
     drawArtwork();
+    attachArtworkCardListeners();
   });
 
   drawArtwork();
+  attachArtworkCardListeners();
+  attachArtworkCardListeners();
 }
+
+function showArtworkModal(artwork) {
+  const modal = document.getElementById("artworkModal");
+  if (!modal) return;
+
+  document.getElementById("modalTitle").textContent = artwork.title;
+  document.getElementById("modalArtist").textContent = `by ${artwork.artist}`;
+  document.getElementById("modalYear").textContent = artwork.year || "Unknown";
+  document.getElementById("modalMedium").textContent = artwork.detailedMedium || artwork.medium || "Unknown";
+  document.getElementById("modalPrice").textContent = formatPrice(artwork.price);
+
+  const statusElement = document.getElementById("modalStatus");
+  if (artwork.sold) {
+    statusElement.textContent = "Sold";
+    statusElement.className = "detail-value sold";
+  } else {
+    statusElement.textContent = "Available";
+    statusElement.className = "detail-value available";
+  }
+
+  modal.classList.add("active");
+  modal.setAttribute("aria-hidden", "false");
+}
+
+function hideArtworkModal() {
+  const modal = document.getElementById("artworkModal");
+  if (!modal) return;
+
+  modal.classList.remove("active");
+  modal.setAttribute("aria-hidden", "true");
+}
+
+function setupArtworkModal() {
+  const modal = document.getElementById("artworkModal");
+  const modalOverlay = document.getElementById("modalOverlay");
+  const modalClose = document.getElementById("modalClose");
+
+  if (!modal || !modalOverlay || !modalClose) return;
+
+  modalOverlay.addEventListener("click", hideArtworkModal);
+  modalClose.addEventListener("click", hideArtworkModal);
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && modal.classList.contains("active")) {
+      hideArtworkModal();
+    }
+  });
+}
+
+setupArtworkModal();
+
+(function initSite() {
+  setYear();
+  setActiveNav();
+  setupArtworkPage();
+  setupArtistsPage();
+  setupApplicationForm();
+})();
 
 function setupArtistsPage() {
   const grid = document.getElementById("artistsGrid");
